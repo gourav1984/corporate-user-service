@@ -19,8 +19,12 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @ActiveProfiles("test")
@@ -62,5 +66,42 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_VALUE)
                 .characterEncoding("UTF-8")
                 .content(this.mapper.writeValueAsBytes(userDTO));
+    }
+
+    @Test
+    public void getAllUsers() throws Exception{
+
+        Set<FileDTO> att1 =new HashSet<>();
+        att1.add(FileDTO.builder().file("/path/civil.pdf").build());
+        att1.add(FileDTO.builder().file("/path/civil.csv").build());
+
+        Set<FileDTO> att2 =new HashSet<>();
+        att2.add(FileDTO.builder().file("/path/ref.pdf").build());
+        att2.add(FileDTO.builder().file("/path/ref.csv").build());
+        att2.add(FileDTO.builder().file("/path/info.csv").build());
+
+        List<UserDTO> users = new ArrayList<>();
+        UserDTO user1 = UserDTO.builder()
+                .name("Gourav Tanpure")
+                .civilId("F5480795")
+                .expiryDate(LocalDate.now())
+                .attachments(att1)
+                .build();
+
+        UserDTO user2 = UserDTO.builder()
+                .name("Sam")
+                .civilId("F4736800")
+                .expiryDate(LocalDate.now().plusDays(12))
+                .attachments(att2)
+                .build();
+
+        users.add(user1);
+        users.add(user2);
+
+        Mockito.when(userService.findAll()).thenReturn(users);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("http://localhost:8080/corporate/api/v1/users").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+
     }
 }
