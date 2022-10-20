@@ -1,0 +1,17 @@
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(250) NOT NULL,
+    civil_id VARCHAR(250) NOT NULL,
+    expiry_date VARCHAR(250)  UNIQUE  NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL
+);
+
+CREATE TABLE user_attachments (
+    id INT AUTO_INCREMENT PRIMARY KEY
+    user_id INT NOT NULL
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL
+);
+
+ALTER TABLE user_attachments
+ADD FOREIGN KEY (user_id)
+    REFERENCES users(id);

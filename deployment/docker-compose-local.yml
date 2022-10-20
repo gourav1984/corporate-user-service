@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  corporate-user-services:
+    container_name: corporate-user-services
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: ${IMAGE_NAME}:{TAG}
+    environment:
+      -SPRING_PROFILES_ACTIVE=${PROFILE}
+    ports:
+      - "{HTTP_PORT}:8080"

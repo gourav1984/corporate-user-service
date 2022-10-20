@@ -1,0 +1,9 @@
+HTTP_PORT=8080
+PROFILE=INT
+ENCRYPTION_KEY=corporate-user-services
+
+IMAGE_NAME=ser/corporate-user-services
+TAG=latest
+
+MOUNT_CONFIG=/opt/docker/deployment/corporate-user-services/mnt/logs
+MOUNT_LOGS=/opt/docker/deployment/corporate-user-services/mnt/logs
