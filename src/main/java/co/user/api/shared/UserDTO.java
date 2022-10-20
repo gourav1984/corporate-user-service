@@ -1,24 +1,16 @@
 package co.user.api.shared;
 
-import co.user.api.data.File;
-import co.user.api.data.Users;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.validation.constraints.NotNull;
+import lombok.Builder;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
-
-
+@Builder
 public class UserDTO implements Serializable {
 
     private String name;
