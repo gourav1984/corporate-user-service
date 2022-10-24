@@ -32,8 +32,8 @@ server:
 
 management:
   server:
-    port: 8080
-    base-path: "/corporate"
+    port: 9090
+    base-path: "/"
   endpoint:
     health:
       show-details: always
@@ -42,7 +42,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: ['health']
+        include: '*'
 
   info :
     git:
