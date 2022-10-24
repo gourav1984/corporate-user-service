@@ -68,7 +68,19 @@ logging:
     #name: var/logs/server.log
 
 springdoc:
+  api-docs:
+    path: /api-docs
   swagger-ui:
+    operationsSorter: alpha
+    tagsSorter: alpha
     enabled: true
-  pathsToMatch:
+    path: /swagger-ui-custom.html
+  #version: springdoc.version
+
+api:
+  version: 1.0-SNAPSHOT
+  server:
+    url: http://www.corporte.com
+  description: The corporate API is used to create, update and delete users.
+
 
